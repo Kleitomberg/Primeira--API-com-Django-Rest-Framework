@@ -1,3 +1,4 @@
+from ast import And
 from rest_framework import generics
 from .models import *
 from .serializers import *
@@ -37,7 +38,8 @@ class AvaliacaoDeleteUpdateAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
 
-        if self.kwargs.get('curso_pk'):
+        if self.kwargs.get('curso_pk') and  self.kwargs.get('avaliacao_pk'):
+            
             id_curso=self.kwargs.get('curso_pk')
             id_avaliacao=self.kwargs.get('avaliacao_pk')
 
