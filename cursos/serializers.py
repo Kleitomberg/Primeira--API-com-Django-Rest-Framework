@@ -24,6 +24,22 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         )
 
 class CursoSerializer(serializers.ModelSerializer):
+
+    #incluir na lista de um obejto os objetos associados a ele
+    
+    #relação usando Nested relationships
+
+         #avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
+
+    #relação usando Hyperlinked
+  # avaliacoes = serializers.HyperlinkedRelatedField(
+      #  many=True, read_only=True, view_name='avaliacao-detail'
+  #  )
+
+    
+    #relação usando Primary key related fild
+    avaliacoes = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Curso
         fields = [
@@ -33,5 +49,8 @@ class CursoSerializer(serializers.ModelSerializer):
             'criacao',
             'ativo',
             'atualizacao',
+            'avaliacoes',
         ]
 
+
+  
